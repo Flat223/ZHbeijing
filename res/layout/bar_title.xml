@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp" >
+
+    <TextView
+        android:id="@+id/tv_base_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/title_red_bg"
+        android:gravity="center"
+        android:text="智慧北京"
+        android:textColor="#fff"
+        android:textSize="22sp" />
+
+    <ImageButton
+        android:id="@+id/ibn_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:padding="10dp"
+        android:src="@drawable/img_menu" />
+
+    <ImageButton
+        android:id="@+id/iv_exchange_photodetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="10dp"
+        android:src="@drawable/icon_pic_grid_type" 
+        android:background="@null"
+        android:visibility="gone"/>
+
+</RelativeLayout>

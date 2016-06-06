@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp" >
+
+    <ImageView
+        android:id="@+id/iv_item_image"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_marginRight="5dp"
+        android:background="#a000"
+        android:padding="1dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/image_demo" />
+
+    <TextView
+        android:id="@+id/tv_item_news"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/iv_item_image"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="数控技术方式保存本小姐很成功的北侧北京出版不错就换成你很懂事"
+        android:textColor="#000"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tv_item_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/iv_item_image"
+        android:layout_alignBottom="@id/iv_item_image"
+        android:text="2016-6-1 15:10:32"
+        android:textColor="#8000" />
+
+</RelativeLayout>
