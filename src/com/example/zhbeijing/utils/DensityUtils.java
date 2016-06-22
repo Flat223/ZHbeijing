@@ -6,7 +6,6 @@ public class DensityUtils {
 	
 	public static int dpTopx(float dp,Activity maActivity){
 		float density = maActivity.getResources().getDisplayMetrics().density;
-		
 		int px = (int) (density * dp + 0.5f);
 		return px;
 	} 

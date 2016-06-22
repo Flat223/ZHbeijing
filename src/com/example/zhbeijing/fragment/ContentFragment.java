@@ -33,7 +33,6 @@ public class ContentFragment extends BaseFragment {
 		view = View.inflate(mActivity, R.layout.fragment_content,null);
 		mViewPager = (NoScrollViewPager) view.findViewById(R.id.vp_content);
 		mRadioGroup = (RadioGroup) view.findViewById(R.id.rg_content);
-		
 		return view;
 	}
 
@@ -45,10 +44,10 @@ public class ContentFragment extends BaseFragment {
 		mPagerArray.add(new GovServicePager(mActivity)); 
 		mPagerArray.add(new SettingPager(mActivity));
 		
-		mPagerArray.get(0).initData();
-		setSlidingMenuEnable(false);
+		mPagerArray.get(1).initData();
+//		setSlidingMenuEnable(false);
 		mViewPager.setAdapter(new ContentAdapter());
-		
+		mViewPager.setCurrentItem(1,false);
 		mRadioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override

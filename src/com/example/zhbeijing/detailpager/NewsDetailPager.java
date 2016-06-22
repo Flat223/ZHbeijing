@@ -51,7 +51,7 @@ public class NewsDetailPager extends BaseDetailPager{
 			NewsTabData data = mTabDataArray.get(i);
 			detailPager = new TabDetailPager(mActivity,data);
 //			Log.e("TAG","title : " + data.title);
-			mPagerArray.add(detailPager);
+			mPagerArray.add(detailPager); 
 		}
 		
 		adapter = new NewsDetailAdapter();
@@ -63,7 +63,7 @@ public class NewsDetailPager extends BaseDetailPager{
 			public void onPageSelected(int position) {
 				if (position == 0) {
 					setSlidingMenuEnable(true);
-				}else {
+				} else {
 					setSlidingMenuEnable(false);
 				}
 			}

@@ -3,6 +3,8 @@ package com.example.zhbeijing.detailpager;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import com.example.zhbeijing.R;
 import com.example.zhbeijing.domain.PhotosBean;
 import com.example.zhbeijing.domain.PhotosBean.PhotosNewsData;
 import com.example.zhbeijing.global.GlobalConstant;
+import com.example.zhbeijing.utils.CacheUtils;
 import com.example.zhbeijing.utils.PhotoBitmapUtils;
 import com.google.gson.Gson;
 import com.lidroid.xutils.BitmapUtils;
@@ -51,11 +54,13 @@ public class PhotoDetailPager extends BaseDetailPager implements OnClickListener
 			lv_photo.setVisibility(View.GONE);
 			mIsListView = false;
 			iv_exchange.setImageResource(R.drawable.icon_pic_list_type);
+			Log.e("TAG", "mIsListView" + " = " + mIsListView);
 		} else {
 			gv_photo.setVisibility(View.GONE);
 			lv_photo.setVisibility(View.VISIBLE);
 			mIsListView = true;
 			iv_exchange.setImageResource(R.drawable.icon_pic_grid_type);
+			Log.e("TAG", "mIsListView" + " = " + mIsListView);
 		}
 	}
 	
@@ -76,6 +81,10 @@ public class PhotoDetailPager extends BaseDetailPager implements OnClickListener
 	public void initData() {
 
 		photoUrl = GlobalConstant.PHOTO_URL;
+		String cache = CacheUtils.getCache(mActivity, photoUrl);
+		if (!TextUtils.isEmpty(cache)) {
+			processData(cache);
+		}
 		getDataFromServer();
 	}
 
@@ -86,6 +95,7 @@ public class PhotoDetailPager extends BaseDetailPager implements OnClickListener
 			@Override
 			public void onSuccess(ResponseInfo<String> responseInfo) {
 				String result = responseInfo.result;
+				CacheUtils.setCache(mActivity, photoUrl, result);
 				processData(result);
 			}
 
@@ -151,7 +161,6 @@ public class PhotoDetailPager extends BaseDetailPager implements OnClickListener
 
 			String imageUrl = photosNewsData.listimage;
 			String newUrl = imageUrl.replace("10.0.2.2", "192.168.2.102");
-
 			mBitmapUtils.display(holder.iv_image, newUrl);
 
 			return convertView;

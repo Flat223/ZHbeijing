@@ -38,6 +38,13 @@
             android:src="@drawable/icon_textsize" />
     </RelativeLayout>
 
+    <ProgressBar
+        android:id="@+id/pb_webview_loading"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@null"/>
+
     <WebView
         android:id="@+id/web_news"
         android:layout_width="match_parent"

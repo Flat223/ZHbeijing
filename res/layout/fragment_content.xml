@@ -22,12 +22,12 @@
             android:id="@+id/rbn_content_Home"
             style="@style/style_tab_bottom"
             android:drawableTop="@drawable/tab_home_selector"
-            android:checked="true"
             android:text="首页" />
         <RadioButton
             android:id="@+id/rbn_content_News"
             style="@style/style_tab_bottom"
             android:drawableTop="@drawable/tab_news_selector"
+            android:checked="true"
             android:text="新闻中心" />
         <RadioButton
             android:id="@+id/rbn_content_SmartServ"

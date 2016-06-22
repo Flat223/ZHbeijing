@@ -21,7 +21,7 @@
         android:layout_toRightOf="@id/iv_item_image"
         android:ellipsize="end"
         android:maxLines="2"
-        android:text="数控技术方式保存本小姐很成功的北侧北京出版不错就换成你很懂事"
+        android:text="数控技术方式保存本sjdj很成功的北侧北京出版不错就换成你很懂事"
         android:textColor="#000"
         android:textSize="15sp" />
 

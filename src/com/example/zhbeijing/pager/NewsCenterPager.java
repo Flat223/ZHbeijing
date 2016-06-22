@@ -3,9 +3,12 @@ package com.example.zhbeijing.pager;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zhbeijing.MainActivity;
@@ -43,15 +46,15 @@ public class NewsCenterPager extends BasePager {
 	
 	@Override
 	public void initData() {
-		Log.e("TAG", "新闻中心初始化");
-		
+//		Log.e("TAG", "新闻中心初始化");
+//		
 //		TextView textView = new TextView(mActivity);
 //		textView.setText("新闻中心");
 //		textView.setTextColor(Color.RED);
 //		textView.setTextSize(22);
 //		textView.setGravity(Gravity.CENTER);
 //		fl_container.addView(textView);
-		
+//		
 //		tv_title.setText("新闻");
 		
 		String json = CacheUtils.getCache(mActivity,GlobalConstant.CATEGORY_URL);
@@ -78,7 +81,7 @@ public class NewsCenterPager extends BasePager {
 			@Override
 			public void onFailure(HttpException error, String msg) {
 				if(spUtils.getBoolean("IsFirst", true)){
-					Toast.makeText(mActivity, "网络未连接", Toast.LENGTH_SHORT).show();
+//					Toast.makeText(mActivity, "网络未连接", Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
@@ -102,10 +105,10 @@ public class NewsCenterPager extends BasePager {
 		mDetailPagerArray.add(new PhotoDetailPager(mActivity,iv_exchange));
 		mDetailPagerArray.add(new InteractionDetailPager(mActivity));
 		
-		if(spUtils.getBoolean("IsFirst", true)){
+//		if(spUtils.getBoolean("IsFirst", true)){
 			setDetailPager(0);
-		}
-		spUtils.putBoolean("IsFirst", false);
+//		}
+//		spUtils.putBoolean("IsFirst", false);
 	}
 	
 	public void setDetailPager(int position){

@@ -14,6 +14,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -32,7 +34,7 @@ import com.example.zhbeijing.global.GlobalConstant;
 import com.example.zhbeijing.utils.CacheUtils;
 import com.example.zhbeijing.utils.SharedPreferencesUtil;
 import com.example.zhbeijing.view.PullToRefreshListView;
-import com.example.zhbeijing.view.PullToRefreshListView.OnRefreshListenner;
+import com.example.zhbeijing.view.PullToRefreshListView.OnRefreshListener;
 import com.example.zhbeijing.view.TopNewPager;
 import com.google.gson.Gson;
 import com.lidroid.xutils.BitmapUtils;
@@ -91,8 +93,7 @@ public class TabDetailPager extends BaseDetailPager implements
 				.inflate(mActivity, R.layout.list_item_header, null);
 		ViewUtils.inject(this, headView);
 		mListView.addHeaderView(headView);
-
-		mListView.setOnRefreshListenner(new OnRefreshListenner() {
+		mListView.setOnRefreshListener(new OnRefreshListener() {
 
 			@Override
 			public void onRefresh() {
@@ -117,9 +118,7 @@ public class TabDetailPager extends BaseDetailPager implements
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 
-				TextView tv_title = (TextView) view
-						.findViewById(R.id.tv_item_news);
-				tv_title.setTextColor(Color.GRAY);
+				int headerViewsCount = mListView.getHeaderViewsCount();// 获取头布局数量
 				NewsData newsData = mNewsDataArray.get(position - 2);
 				int newsId = newsData.id;
 
@@ -129,6 +128,10 @@ public class TabDetailPager extends BaseDetailPager implements
 					readId = readId + newsId;
 					spUtils.putString("readId", readId + ",");
 				}
+				
+				TextView tv_title = (TextView) view
+						.findViewById(R.id.tv_item_news);
+				tv_title.setTextColor(Color.GRAY);
 
 				String mWebUrl = newsData.url;
 				Intent intent = new Intent(mActivity, NewsDetailActivity.class);
@@ -136,7 +139,7 @@ public class TabDetailPager extends BaseDetailPager implements
 				mActivity.startActivity(intent);
 			}
 		});
-
+		
 		return view;
 	}
 

@@ -47,7 +47,7 @@ public class LeftMenuFragment extends BaseFragment {
 	}
 
 	public void setMenuData(ArrayList<NewsMenuData> datas){
-//		mCurrentPos = 0;
+		mCurrentPos = 0;
 		
 		mDataArray = datas;
 		

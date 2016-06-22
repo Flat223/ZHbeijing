@@ -5,14 +5,17 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebSettings.TextSize;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.onekeyshare.OnekeyShareTheme;
@@ -24,6 +27,9 @@ public class NewsDetailActivity extends Activity implements OnClickListener {
 	
 	@ViewInject(R.id.web_news)
 	private WebView mWebView;
+	
+	@ViewInject(R.id.pb_webview_loading)
+	private ProgressBar mProgressBar;
 	
 	@ViewInject(R.id.ibn_news_back)
 	private ImageButton ibn_back;
@@ -51,7 +57,7 @@ public class NewsDetailActivity extends Activity implements OnClickListener {
 		settings.setJavaScriptEnabled(true);//支持Jsp功能
 		
 		String mWebUrl = getIntent().getStringExtra("WebUrl");
-		newUrl = mWebUrl.replace("10.0.2.2", "192.168.2.102");
+		newUrl = mWebUrl.replace("http://10.0.2.2:8080/zhbj", "http://zhihuibj.sinaapp.com/zhbj");
 		mWebView.loadUrl(newUrl);
 		
 		mWebView.setWebViewClient(new WebViewClient(){
@@ -70,6 +76,27 @@ public class NewsDetailActivity extends Activity implements OnClickListener {
 				view.loadUrl(url);
 				return true;
 			}
+		});
+		
+		mWebView.setWebChromeClient(new WebChromeClient(){
+
+			@Override
+			public void onProgressChanged(WebView view, int newProgress) {
+				super.onProgressChanged(view, newProgress);
+				mProgressBar.setProgress(newProgress);
+				Log.e("TAG", "newProgress : " + newProgress);
+				if (newProgress >= 83) {
+					mProgressBar.setVisibility(view.GONE);
+				}
+			}
+
+			@Override
+			public void onReceivedTitle(WebView view, String title) {
+				super.onReceivedTitle(view, title);
+				Log.e("TAG", "title : " + title);
+			} 
+			
+			
 		});
 		
 //		mWebView.goBack();

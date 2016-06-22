@@ -20,6 +20,12 @@ public class TopNewPager extends ViewPager {
 		
 	}
 	
+
+	/**
+	 * 	1. 上下滑动需要拦截
+	 * 	2. 向右滑动并且当前是第一个页面,需要拦截
+	 *  3. 向左滑动并且当前是最后一个页面,需要拦截
+	 */
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
 		getParent().requestDisallowInterceptTouchEvent(true);
@@ -39,19 +45,27 @@ public class TopNewPager extends ViewPager {
 			float dx = endX - startX;
 			float dy = endY - startY;
 			
-			if (Math.abs(dy) > Math.abs(dx)) {
-				getParent().requestDisallowInterceptTouchEvent(false);	
-			} else {
+			if (Math.abs(dy) < Math.abs(dx)) {
 				int currentItem = getCurrentItem();
-				if (currentItem == 0 && dx > 0) {
+				// 左右滑动
+				if (dx > 0) {
+					// 向右划
+					if (currentItem == 0) {
+						// 第一个页面,需要拦截
 						getParent().requestDisallowInterceptTouchEvent(false);
-						
+					}
 				} else {
-					int count = getAdapter().getCount();
-					if (currentItem == (count - 1) && dx < 0) {
+					// 向左划
+					int count = getAdapter().getCount();// item总数
+					if (currentItem == count - 1) {
+						// 最后一个页面,需要拦截
 						getParent().requestDisallowInterceptTouchEvent(false);
 					}
 				}
+
+			} else {
+				// 上下滑动,需要拦截
+				getParent().requestDisallowInterceptTouchEvent(false);
 			}
 			
 			break;

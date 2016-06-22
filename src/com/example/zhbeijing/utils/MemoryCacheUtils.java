@@ -18,8 +18,8 @@ public class MemoryCacheUtils {
 			@Override
 			protected int sizeOf(String key, Bitmap value) {
 //				value.getByteCount();
-				int sizeCount = value.getRowBytes() * value.getHeight();//计算图片大小:每行字节数 * 高度;
-				return sizeCount;
+//				int sizeCount = value.getRowBytes() * value.getHeight();//计算图片大小:每行字节数 * 高度;
+				return value.getByteCount();
 			}
 		};
 	}
